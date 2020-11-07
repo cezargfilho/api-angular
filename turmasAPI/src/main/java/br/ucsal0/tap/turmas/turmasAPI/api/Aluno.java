@@ -62,7 +62,7 @@ public class Aluno {
 		Double d = ((av1 + av2 + av3) / 3);
 		DecimalFormat df = new DecimalFormat("###.##");
 		String s = df.format(d);
-
+		System.out.println(s);
 		return s;
 	}
 
