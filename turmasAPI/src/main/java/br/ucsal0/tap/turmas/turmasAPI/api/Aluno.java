@@ -12,6 +12,7 @@ public class Aluno {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Long id;
 	private String matricula;
 	private String nome;
 	private Double av1;
@@ -19,13 +20,16 @@ public class Aluno {
 	private Double av3;
 	private String media;
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name = "turma_id", nullable = false) private Turma turma;
-	 */
-
 	public Aluno() {
+	}
+
+	public Aluno(AlunoForm form) {
+		this.matricula = form.getMatricula();
+		this.nome = form.getNome();
+		this.av1 = Double.parseDouble(form.getAv1());
+		this.av2 = Double.parseDouble(form.getAv2());
+		this.av3 = Double.parseDouble(form.getAv3());
+		this.media = getMedia();
 	}
 
 	public Aluno(String matricula, String nome, Double av1, Double av2, Double av3) {
@@ -61,9 +65,7 @@ public class Aluno {
 	public String getMedia() {
 		Double d = ((av1 + av2 + av3) / 3);
 		DecimalFormat df = new DecimalFormat("###.##");
-		String s = df.format(d);
-		System.out.println(s);
-		return s;
+		return df.format(d);
 	}
 
 }
